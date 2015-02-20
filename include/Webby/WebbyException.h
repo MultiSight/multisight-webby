@@ -1,18 +1,16 @@
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//
+// XSDK
+// Copyright (c) 2015 Schneider Electric
+//
+// Use, modification, and distribution is subject to the Boost Software License,
+// Version 1.0 (See accompanying file LICENSE).
+//
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 #ifndef _Webby_WebbyException_h
 #define _Webby_WebbyException_h
-
-//==============================================================================
-// Copyright (c) 2012 Pelco. All rights reserved.
-//
-// This file contains trade secrets of Pelco.  No part may be reproduced or
-// transmitted in any form by any means or for any purpose without the express
-// written permission of Pelco.
-//
-// $File:$ WebbyException.h
-// $Revision:$
-// $Date:$
-// $Author:$ Jonathan M Davis
-//==============================================================================
 
 #include "XSDK/XException.h"
 #include "XSDK/XString.h"
