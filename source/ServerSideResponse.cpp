@@ -153,8 +153,7 @@ bool ServerSideResponse::WriteResponse(XRef<XStreamIO> socket)
         responseHeader += XString::Format( "Content-Type: %s\r\n",
                                            _contentType.c_str() );
 
-    if (_body->GetDataSize() != 0)
-        responseHeader += XString::Format("Content-Length: %d\r\n", _body->GetDataSize());
+    responseHeader += XString::Format("Content-Length: %d\r\n", _body->GetDataSize());
 
     XHash<XString>::XHashIter i = _additionalHeaders.GetIterator();
 
