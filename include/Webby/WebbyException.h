@@ -180,6 +180,37 @@ X_MACRO_BEGIN \
     } \
 X_MACRO_END
 
+#define CATCH_TRANSLATE_HTTP_EXCEPTIONS(a) \
+    catch( HTTP400Exception& ex ) \
+    { \
+        X_LOG_ERROR( "%s", ex.what() ); \
+        a.SetStatusCode( ServerSideResponse::SC_400_Bad_Request );        \
+    } \
+    catch( HTTP401Exception& ex ) \
+    { \
+        X_LOG_ERROR( "%s", ex.what() ); \
+        a.SetStatusCode( ServerSideResponse::SC_401_Unauthorized ); \
+    } \
+    catch( HTTP403Exception& ex ) \
+    { \
+        X_LOG_ERROR( "%s", ex.what() ); \
+        a.SetStatusCode( ServerSideResponse::SC_403_Forbidden ); \
+    } \
+    catch( HTTP404Exception& ex ) \
+    { \
+        X_LOG_ERROR( "%s", ex.what() ); \
+        a.SetStatusCode( ServerSideResponse::SC_404_Not_Found ); \
+    } \
+    catch( HTTP500Exception& ex ) \
+    { \
+        X_LOG_ERROR( "%s", ex.what() ); \
+        a.SetStatusCode( ServerSideResponse::SC_500_Internal_Server_Error ); \
+    } \
+    catch( HTTP501Exception& ex ) \
+    { \
+        X_LOG_ERROR( "%s", ex.what() ); \
+        a.SetStatusCode( ServerSideResponse::SC_501_Not_Implemented ); \
+    }
 }
 
 #endif
