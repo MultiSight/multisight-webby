@@ -12,6 +12,7 @@
 #include "Webby/URL.h"
 #include "Webby/WebbyException.h"
 #include "Webby/WebbyUtils.h"
+#include "XSDK/Assert.h"
 
 using namespace std;
 using namespace XSDK;
