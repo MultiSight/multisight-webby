@@ -152,64 +152,46 @@ namespace WEBBY
         X_API HTTP501Exception(const XSDK::XString& msg);
     };
 
-
-    /// \briefe Throws an exception corresponding to the given status code
-    ///         or a plain HTTPException if there isn't one.
-    X_API void ThrowHTTPException(int statusCode, const char* msg, ...);
-    X_API void ThrowHTTPException(int statusCode, const XSDK::XString& msg);
-
-#define HTTP_THROW(PARAMS) \
-X_MACRO_BEGIN \
-    try \
-    { \
-        ThrowHTTPException PARAMS ; \
-    } \
-    catch(HTTPException& e) \
-    { \
-        e.SetThrowPoint(__LINE__, __FILE__); \
-        std::vector<std::string> stack; \
-        XSDK::XStackTrace::GetStack(stack); \
-        e.SetStack(stack); \
-        X_LOG_WARNING("%s thrown. Msg: \"%s\", At: %s(%d)\n", \
-                      e.GetTypeName(), \
-                      e.GetMsg(), \
-                      __FILE__, \
-                      __LINE__);\
-        XSDK::XLog::LogBacktrace(stack); \
-        throw; \
-    } \
-X_MACRO_END
-
 #define CATCH_TRANSLATE_HTTP_EXCEPTIONS(a) \
-    catch( HTTP400Exception& ex ) \
+    catch( WEBBY::HTTP400Exception& ex )   \
     { \
-        X_LOG_ERROR( "%s", ex.what() ); \
-        a.SetStatusCode( ServerSideResponse::SC_400_Bad_Request );        \
+        X_LOG_XSDK_EXCEPTION(ex); \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_400_Bad_Request );        \
     } \
-    catch( HTTP401Exception& ex ) \
+    catch( WEBBY::HTTP401Exception& ex ) \
     { \
-        X_LOG_ERROR( "%s", ex.what() ); \
-        a.SetStatusCode( ServerSideResponse::SC_401_Unauthorized ); \
+        X_LOG_XSDK_EXCEPTION(ex);       \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_401_Unauthorized ); \
     } \
-    catch( HTTP403Exception& ex ) \
+    catch( WEBBY::HTTP403Exception& ex ) \
     { \
-        X_LOG_ERROR( "%s", ex.what() ); \
-        a.SetStatusCode( ServerSideResponse::SC_403_Forbidden ); \
+        X_LOG_XSDK_EXCEPTION(ex);       \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_403_Forbidden ); \
     } \
-    catch( HTTP404Exception& ex ) \
+    catch( WEBBY::HTTP404Exception& ex ) \
     { \
-        X_LOG_ERROR( "%s", ex.what() ); \
-        a.SetStatusCode( ServerSideResponse::SC_404_Not_Found ); \
+        X_LOG_XSDK_EXCEPTION(ex);       \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_404_Not_Found ); \
     } \
-    catch( HTTP500Exception& ex ) \
+    catch( WEBBY::HTTP500Exception& ex ) \
     { \
-        X_LOG_ERROR( "%s", ex.what() ); \
-        a.SetStatusCode( ServerSideResponse::SC_500_Internal_Server_Error ); \
+        X_LOG_XSDK_EXCEPTION(ex);       \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_500_Internal_Server_Error ); \
     } \
-    catch( HTTP501Exception& ex ) \
+    catch( WEBBY::HTTP501Exception& ex ) \
     { \
-        X_LOG_ERROR( "%s", ex.what() ); \
-        a.SetStatusCode( ServerSideResponse::SC_501_Not_Implemented ); \
+        X_LOG_XSDK_EXCEPTION(ex);       \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_501_Not_Implemented ); \
+    } \
+    catch( XSDK::XException& ex )               \
+    { \
+        X_LOG_XSDK_EXCEPTION(ex);        \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_500_Internal_Server_Error ); \
+    } \
+    catch( std::exception& ex )                 \
+    { \
+        X_LOG_STD_EXCEPTION(ex); \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_500_Internal_Server_Error ); \
     }
 }
 

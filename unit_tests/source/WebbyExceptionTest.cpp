@@ -118,22 +118,4 @@ void WebbyExceptionTest::TestGetStatus()
 
 void WebbyExceptionTest::TestThrowHTTP()
 {
-    printf("test needs rewriting.");
-#if 0
-    HTTP_ASSERT_THROW(HTTP_THROW((400, "hello world")), 400, HTTP400Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((401, "hello world")), 401, HTTP401Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((403, "hello world")), 403, HTTP403Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((404, "hello world")), 404, HTTP404Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((415, "hello world")), 415, HTTP415Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((453, "hello world")), 453, HTTP453Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((500, "hello world")), 500, HTTP500Exception);
-    HTTP_ASSERT_THROW(HTTP_THROW((501, "hello world")), 501, HTTP501Exception);
-
-    HTTP_ASSERT_THROW(HTTP_THROW((42,  "hello world")), 42,  HTTPException);
-    HTTP_ASSERT_THROW(HTTP_THROW((100, "hello world")), 100, HTTPException);
-    HTTP_ASSERT_THROW(HTTP_THROW((200, "hello world")), 200, HTTPException);
-    HTTP_ASSERT_THROW(HTTP_THROW((300, "hello world")), 300, HTTPException);
-    HTTP_ASSERT_THROW(HTTP_THROW((402, "hello world")), 402, HTTPException);
-    HTTP_ASSERT_THROW(HTTP_THROW((600, "hello world")), 600, HTTPException);
-#endif
 }
