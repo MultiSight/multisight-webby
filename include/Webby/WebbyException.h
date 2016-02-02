@@ -156,7 +156,7 @@ namespace WEBBY
     catch( WEBBY::HTTP400Exception& ex )   \
     { \
         X_LOG_XSDK_EXCEPTION(ex); \
-        a.SetStatusCode( WEBBY::ServerSideResponse::SC_400_Bad_Request );        \
+        a.SetStatusCode( WEBBY::ServerSideResponse::SC_400_Bad_Request ); \
     } \
     catch( WEBBY::HTTP401Exception& ex ) \
     { \
