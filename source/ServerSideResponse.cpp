@@ -150,10 +150,17 @@ bool ServerSideResponse::WriteResponse(XRef<XStreamIO> socket)
                                              timeString.c_str() );
 
     if( _contentType.length() > 0 )
+    {
         responseHeader += XString::Format( "Content-Type: %s\r\n",
                                            _contentType.c_str() );
 
-    responseHeader += XString::Format("Content-Length: %d\r\n", _body->GetDataSize());
+        if( !_contentType.Contains( "multipart" ) )
+            responseHeader += XString::Format("Content-Length: %d\r\n", _body->GetDataSize());
+    }
+    else
+    {
+        responseHeader += XString::Format("Content-Length: %d\r\n", _body->GetDataSize());
+    }
 
     XHash<XString>::XHashIter i = _additionalHeaders.GetIterator();
 
