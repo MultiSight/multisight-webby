@@ -33,7 +33,7 @@ public:
           _resourcePath("/")
    {}
 
-    X_API URI(const XSDK::XString& fullURI);
+    X_API URI(const XSDK::XString& fullURI, bool bReconstructURI = true);
 
     // So string literals work when constructing with =
     X_API URI(const char* cstr) : _fullRawURI("/"), _getArgs(), _resource(), _resourcePath("/")

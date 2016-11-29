@@ -25,15 +25,18 @@ using namespace WEBBY;
 // Constructors/Destructor
 //------------------------------------------------------------------------------
 
-URI::URI(const XString& fullURI)
+URI::URI(const XString& fullURI, bool bReconstructURI)
     : _fullRawURI(_VerifyStartingSlash(fullURI)),
       _getArgs(_ParseGetArgs(_fullRawURI)),
       _resource(_ParseResource(_fullRawURI)),
       _resourcePath(_ParseResourcePath(_fullRawURI))
 {
-    //We want to make sure that the URI is formed properly without any trailing
-    //question marks or invalid arguments.
-    _fullRawURI = _ConstructFullRawURI(_resourcePath, _resource, _getArgs);
+    if(bReconstructURI)
+    {
+        //We want to make sure that the URI is formed properly without any trailing
+        //question marks or invalid arguments.
+        _fullRawURI = _ConstructFullRawURI(_resourcePath, _resource, _getArgs);
+    }
 }
 
 
