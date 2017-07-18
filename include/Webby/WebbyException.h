@@ -170,7 +170,7 @@ namespace WEBBY
     } \
     catch( WEBBY::HTTP404Exception& ex ) \
     { \
-        X_LOG_XSDK_EXCEPTION(ex);       \
+        X_LOG_NOTICE_XSDK_EXCEPTION(ex);       \
         a.SetStatusCode( WEBBY::ServerSideResponse::SC_404_Not_Found ); \
     } \
     catch( WEBBY::HTTP500Exception& ex ) \
